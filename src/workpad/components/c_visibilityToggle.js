@@ -9,7 +9,7 @@ class VisiblityToggle extends React.Component{
         this.makeItVisible=this.makeItVisible.bind(this);
 
         this.state={
-            isVisible : true
+            isVisible : false
         }
     }
 
@@ -19,7 +19,7 @@ class VisiblityToggle extends React.Component{
 
         this.setState((prevState)=>{
             return {
-                isVisible : true 
+                isVisible : !prevState.isVisible 
             }
         })
     }
@@ -30,8 +30,10 @@ class VisiblityToggle extends React.Component{
         return (
             <div>
                 <h1>Visibility Toggle</h1>
-                <button onClick={this.makeItVisible}>{this.isVisible? 'Hide Details' : 'Show Details'} </button>
-                <div>{this.isVisible && <p>You really want to see the details...</p>}</div>
+                <button onClick={this.makeItVisible}>{this.state.isVisible? 'Hide Details' : 'Show Details'} </button>
+                {this.state.isVisible &&<div>
+                     <p>You really want to see the details...</p>
+                    </div>}
             </div>
         )
     }
@@ -40,5 +42,5 @@ class VisiblityToggle extends React.Component{
 }
 
 
-ReactDOM.render(<VisiblityToggle />,
-    document.getElementById('appRoot'));
+
+ReactDOM.render(<VisiblityToggle />, document.getElementById('appRoot'));

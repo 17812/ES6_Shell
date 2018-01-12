@@ -2,18 +2,26 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 class ToDoApp extends React.Component{
+
+    constructor(props){
+        super(props);
+        this.state ={
+            options : []// ['Todo One', 'Todo Two', 'Todo Three']
+        }
+        // this.handlePick=this.handlePick.bind(this);
+    }
     
     render (){
         const title = 'Todo application';
         const subtitle = 'Put your future in the hands of a computer';
-        const todos = ['Todo One', 'Todo Two', 'Todo Three'];
+        {this.state.options}
 
 
         return (
                 <div>
                     <Header title={title} subtitle={subtitle}/>
-                    <Action />
-                    <Todos todos={todos} />
+                    <Action hasOptions={this.state.options.length>0}/>
+                    <Todos todos={this.state.options} />
                 <AddOption />
             </div>
         )
@@ -36,20 +44,19 @@ class Action extends React.Component {
 
 
     handlePick() {
-        alert('you clicked me');
+    //console.log(this.state.options.length);
    }
 
     render(){
 
         return (
             <div>
-                <button onClick={this.handlePick}>What should I do?</button>
+                <button disabled={!this.props.hasOptions} onClick={this.handlePick}>What should I do?</button>
             </div>
 
         );
     }
 }
-
 
 
 class Todos extends React.Component {
@@ -62,9 +69,8 @@ class Todos extends React.Component {
         return (
             <div>
             <button onClick={this.removeAllTodos}>RemoveAll</button>
-              {this.props.todos.map((todos)=> <Todo key={todos} todoText={todos} />
-              )}
-                <Todo />
+            {this.props.todos.map((todos)=> <Todo key={todos} todoText={todos} />)}
+            <Todo />
             </div>
         )
     }
@@ -79,9 +85,6 @@ class Todo extends React.Component {
         )
     }
 }
-
-
-
 
 //TODO: AddOption componet  w/o the events
 
@@ -109,6 +112,4 @@ class AddOption extends React.Component {
 }
 
 
-
-    ReactDOM.render(<ToDoApp />,
-        document.getElementById('appRoot'))
+ReactDOM.render(<ToDoApp />, document.getElementById('appRoot'))
