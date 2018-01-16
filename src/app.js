@@ -27,11 +27,16 @@ class ToDoApp extends React.Component{
     }
 
     handleAddOption(option){
+        if(!option){
+            return 'enter a valid value';
+        }else if(this.state.options.indexOf(option)>-1){
+            return 'option already exits'
+        }else{
         this.setState((prevState)=>{
             return {
                 options : prevState.options.concat([option])
             }
-        })
+        })}
     }
     
     render (){
@@ -45,22 +50,20 @@ class ToDoApp extends React.Component{
                     <Header title={title} subtitle={subtitle}/>
                     <Action handleRandomSelection={this.handleRandomSelection} hasOptions={this.state.options.length>0}/>
                     <Todos handleDeleteOptions={this.handleDeleteOptions} todos={this.state.options} />
-                    <AddOption handleAddOption={this.handleAddOption}/>
+                    <AddOption handleAddOption={this.handleAddOption} />
             </div>
         )
     }
 }
 
 const Header =(props)=> {
-
     
             return (
                 <div>
                     <h1>{props.title}</h1>
                     <h2>{props.subtitle}</h2>
                 </div>
-            )
-        
+            )      
 }
 
 const Action = (props)=> {
@@ -87,14 +90,14 @@ class Todos extends React.Component {
     }
 }
 
-class Todo extends React.Component {
-    render(){
+const Todo = (props)=> {
+   
         return (
             <div> 
-            {this.props.todoText}
+            {props.todoText}
            </div>
         )
-    }
+    
 }
 
 //TODO: AddOption componet  w/o the events
@@ -104,15 +107,28 @@ class AddOption extends React.Component {
     constructor(props){
         super(props);
         this.handleAddOption=this.handleAddOption.bind(this);
+        this.state = {
+            error : undefined
+        }
     }
 
     handleAddOption(e){
         e.preventDefault();
-        if(e.target.elements.addOption.value.trim()){
-           this.props.handleAddOption(e.target.elements.addOption.value.trim());
-           e.target.elements.addOption.value='';
-        }else{
-            alert('no value');
+        const option = e.target.elements.addOption.value.trim();
+        const error = this.props.handleAddOption(option);
+        if(error){
+
+            this.setState(()=>{
+                return {
+                    error
+                }
+            })
+            e.target.elements.addOption.value='';
+
+
+        }else {
+            e.target.elements.addOption.value='';
+            
         }
     }
 
@@ -122,6 +138,7 @@ class AddOption extends React.Component {
             <form onSubmit={this.handleAddOption}>
                 <input type="text" name="addOption"/>
                 <button>AddOption</button>
+                {this.state.error && <p>{this.state.error}</p>}
             </form>     
             </div>
         )
