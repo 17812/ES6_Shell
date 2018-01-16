@@ -19,7 +19,7 @@ render(){
     return (
         <div> 
             <h1>React Todo Application</h1>
-        <Options options={this.state.options}/>
+            <Todos todos={this.state.options}/>
         </div>
     )
 }
@@ -28,11 +28,17 @@ render(){
 
 
 
-const Options = (props) =>{
-    return(
-        // <div>props.options.map((todo)=> <Todo key={todo} todoText={todo} /> ) </div>
-        <div>props.options.map((todo)=> return <p>{todo}</p> ) </div>
-    )
+class Todos extends React.Component {
+
+    render(){
+        return (
+            <div>
+            <button onClick={this.props.handleDeleteOptions}>RemoveAll</button>
+            {this.props.todos.map((todos)=> <Todo key={todos} todoText={todos} />)}
+            <Todo />
+            </div>
+        )
+    }
 }
 
 const Todo = (props)=>{
