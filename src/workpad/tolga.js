@@ -7,20 +7,35 @@ class Main extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            options : ['One', 'Two', 'Three']
+            todos : ['One', 'Two', 'Three']
+        }
+        this.handleRemoveAll=this.handleRemoveAll.bind(this);
+    }
+
+handleRemoveAll (){
+    this.setState(()=>{
+        return{
+            todos : []
         }
     }
+    )
+}
 
     
 
 
 render(){
 
+    const title='ToDo Manager'
+    const subtitle='Let the Machine make the decisions for you.'
+
     return (
         <div> 
-            <h1>React Todo Application</h1>
-        <Options options={this.state.options}/>
+            <h1>{title}</h1>
+            <p>{subtitle}</p>
+            <Todos todos={this.state.todos} />
         </div>
+      
     )
 }
 
@@ -28,20 +43,24 @@ render(){
 
 
 
-const Options = (props) =>{
-    return(
-        // <div>props.options.map((todo)=> <Todo key={todo} todoText={todo} /> ) </div>
-        <div>props.options.map((todo)=> return <p>{todo}</p> ) </div>
-    )
-}
-
-const Todo = (props)=>{
+const Todos =(props)=>{
     return (
         <div>
-            <p>props.todoText</p>
+
+        <button >RemoveAll</button>
+        {props.todos.map((todo)=>{
+            return <p key={todo} todotext={todo}>{todo}</p>
+        })}
+
         </div>
+
+
+
     )
 }
+
+
+
 
 
 
