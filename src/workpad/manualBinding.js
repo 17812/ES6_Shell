@@ -5,9 +5,6 @@ import ReactDOM from 'react-dom'
 
 
 
-
-
-
 const user = {
     name : 'John Rambo',
     age : 17,

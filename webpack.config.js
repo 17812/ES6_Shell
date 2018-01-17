@@ -9,6 +9,7 @@ var PATHS = {
     // "app" : path.resolve(__dirname,'src/workpad/es6.classes.1.js'),
     // "app" : path.resolve(__dirname,'src/workpad/counter-example.js'),
     "app" : path.resolve(__dirname,'src/workpad/tolga.js'),
+    // "app" : path.resolve(__dirname,'src/workpad/workpad.js'),
     "build" : path.resolve(__dirname,'public/')
 }
 
