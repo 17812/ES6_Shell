@@ -9,7 +9,7 @@ class VisiblityToggle extends React.Component{
         this.makeItVisible=this.makeItVisible.bind(this);
 
         this.state={
-            isVisible : false
+            count : 0
         }
     }
 
