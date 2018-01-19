@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import './styles/style.scss'
 
 class ToDoApp extends React.Component {
 
@@ -16,6 +17,34 @@ class ToDoApp extends React.Component {
 
     }
 
+    componentDidMount(){
+
+            try{
+
+                const json = localStorage.getItem('todos');
+                const todos = JSON.parse(json)
+                if(todos){
+                this.setState(()=>({todos}))
+                }
+            }    
+             catch(e){
+                //Do nothing at this point
+                
+            }
+        }
+
+    componentDidUpdate (prevState, prevProps){
+       if(prevState.todos.length !== this.state.todos.length){
+           console.log('length of the arrray changed.');
+       }
+       const json = JSON.stringify(this.state.todos);
+       localStorage.setItem('todos', json);
+    }
+
+    componentWillUnmount(){
+        console.log('componetWillUnMount')
+    }
+
     feelingLucky() {
 
         const luckyNumber = Math.floor(Math.random() * this.state.todos.length);
@@ -28,8 +57,12 @@ class ToDoApp extends React.Component {
     handleRemoveSingle(todoRemove){
 
         this.setState((prevState)=>{
+            return {
             todos : prevState.todos.filter((todo)=> todoRemove !== todo)
+            }
         })
+
+        // console.log('todo', todoRemove)
 
     }
 
@@ -48,15 +81,13 @@ class ToDoApp extends React.Component {
         }
     }
 
-
-
-
     render() {
         return (
             <div>
                 {/* <Header title={title} subtitle={subtitle}/> */}
                 <Header />
                 <WhatShouldIDo feelingLucky={this.feelingLucky} todoCount={!this.state.todos.length > 0} />
+                {this.state.todos.length===0 &&<p>Please add todo to get started!</p>}
                 <RemoveAll handleRemoveAll={this.handleRemoveAll} />
                 <TodosComp todos={this.state.todos} handleRemoveSingle={this.handleRemoveSingle}/>
                 <TodoForm handleNewTodo={this.handleNewTodo} />
@@ -126,6 +157,10 @@ class TodoForm extends React.Component {
         }
     }
 
+    componentDidMount() {
+        console.log('new todo component did mount')
+    }
+
     handleNewTodoInput(e) {
 
         e.preventDefault();
@@ -138,8 +173,11 @@ class TodoForm extends React.Component {
 
         this.setState(() => ( { error }))
 
+        if(!error){
+
         e.target.elements.newTodoInput.value = ''
 
+        }
 
 
 
@@ -156,10 +194,6 @@ class TodoForm extends React.Component {
         )
     }
 }
-
-
-
-
 
 
 

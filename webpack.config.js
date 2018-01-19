@@ -2,7 +2,8 @@ var path = require("path");
 
 var PATHS = {
 
-    "app" : path.resolve(__dirname,'src/app.js'),
+    "app" : path.resolve(__dirname,'src/app2.js'),
+    // "app" : path.resolve(__dirname,'src/workpad/demo/c_count.js'),
     "build" : path.resolve(__dirname,'public/')
 }
 

@@ -44,6 +44,31 @@ class VisibilityApp extends React.Component{
         })
     }
 
+    componentDidMount(){
+
+        try {
+
+            // const json =  localStorage.getItem('count')
+            const json =  localStorage.getItem('count')
+            const count = JSON.parse(json)
+            if(count){
+            this.setState(()=>(count))
+            }
+
+        } catch(e){
+            //catch the errror
+        }
+
+    }
+
+    componentDidUpdate(){
+
+        // const json = JSON.stringify(this.state.count);
+        const json = JSON.stringify(this.state);
+        localStorage.setItem('count', json);
+
+    }
+
 
     render(){
 
