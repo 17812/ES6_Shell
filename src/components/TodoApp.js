@@ -5,13 +5,15 @@ import WhatShouldIDo from './WhatShouldIDo'
 import TodosComp from './TodosComp'
 import RemoveAll from './RemoveAll'
 import Header from './Header'
-import {Jumbotron, Container, Button, Row, Col} from 'reactstrap'
+import FeelingLuckyModal from './feelingLucky-modal'
+import {Jumbotron, Container, Button, Row, Col, Modal,l, ModalHeader, ModalBody, ModalFooter} from 'reactstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default class ToDoApp extends React.Component {
 
     state = {
-        todos: []
+        todos: [],
+        modal : false
     }
 
     componentDidMount(){
@@ -37,14 +39,31 @@ export default class ToDoApp extends React.Component {
        localStorage.setItem('todos', json);
     }
 
-    componentWillUnmount(){
-        console.log('componetWillUnMount')
-    }
+    // componentWillUnmount(){
+    //     // console.log('componetWillUnMount')
+    // }
+
+    toggle=()=>{
+        this.setState({
+          modal: !this.state.modal
+        });
+      }
 
     feelingLucky =()=> {
 
         const luckyNumber = Math.floor(Math.random() * this.state.todos.length);
-        alert(this.state.todos[luckyNumber])
+        const selectedTodo = this.state.todos[luckyNumber];
+
+        console.log('selectedTodo', selectedTodo);
+        console.log('selectedOption before', this.state.selectedOption);
+
+        this.setState(()=>{ ( {selectedOption : 'tolga'})      
+            
+        }
+    );
+
+        console.log('selectedOption after', this.state.selectedOption);
+
 
     }
 
@@ -54,7 +73,7 @@ export default class ToDoApp extends React.Component {
 
         this.setState((prevState)=>{
             return {
-            todos : prevState.todos.filter((todo)=> todoRemove !== todo)
+                todos : prevState.todos.filter((todo)=> todoRemove !== todo)
             }
         })
 
@@ -81,22 +100,15 @@ export default class ToDoApp extends React.Component {
     render() {
         return (
             <Container className="text-center">
-                      <Jumbotron>
-                            <h1 className="display-3">Hello, world!</h1>
-                            <p className="lead">This is a simple hero unit, a simple Jumbotron-style component for calling extra attention to featured content or information.</p>
-                            <hr className="my-2" />
-                            <p>It uses utility classes for typgraphy and spacing to space content out within the larger container.</p>
-                            <p className="lead">
-                            <Button color="primary">Learn More</Button>
-                            </p>
-                        </Jumbotron>
                 {/* <Header title={title} subtitle={subtitle}/> */}
                      <Header />
-                     <WhatShouldIDo feelingLucky={this.feelingLucky} todoCount={!this.state.todos.length > 0} />
+                     <WhatShouldIDo feelingLucky={this.toggle} todoCount={!this.state.todos.length > 0} />
                     {this.state.todos.length===0 &&<p>Please add todo to get started!</p>}
                     <RemoveAll handleRemoveAll={this.handleRemoveAll} />
                     <TodosComp todos={this.state.todos} handleRemoveSingle={this.handleRemoveSingle}/>
                     <TodoForm handleNewTodo={this.handleNewTodo} />
+                    <FeelingLuckyModal modal={this.state.modal} toggle={this.toggle} />
+
             </Container>
         )
     }

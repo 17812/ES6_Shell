@@ -3,10 +3,10 @@ import Todo from './Todo'
 
 
 
-const TodosComp = (props) => {
+const TodosComp = (props) => (
 
-    return props.todos.map((todo) => <Todo handleRemoveSingle={props.handleRemoveSingle} key={todo} todoText={todo} />)
+ props.todos.map((todo) => <Todo handleRemoveSingle={props.handleRemoveSingle} key={todo} todoText={todo} />)
 
-}
+)
 
 export default TodosComp

@@ -1,12 +1,17 @@
 import React from 'react'
+import {Button} from 'reactstrap'
 
 
-const WhatShouldIDo = (props) => {
-    return (
+const  WhatShouldIDo = (props)=> (
+
+
         <div>
-            <button disabled={props.todoCount} onClick={props.feelingLucky}>feeling lucky</button>
+        <p></p>
+            <Button color="success" disabled={props.todoCount} onClick={props.feelingLucky}>click if you feel lucky</Button>
+            <p></p>
         </div>
-    )
-}
+    
+
+)
 
 export default WhatShouldIDo

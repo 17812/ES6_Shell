@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button,Row,Col } from 'reactstrap';
+import { Button,Row,Col ,Input} from 'reactstrap';
 
 
 export default class TodoForm extends React.Component {
@@ -35,15 +35,12 @@ export default class TodoForm extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleNewTodoInput}>
+            <p></p>
                 {this.state.error && <p>{this.state.error}</p>}
                 <Row>
                     <Col md="4"></Col>
-                    <Col md="6">
-                <input type='text' name='newTodoInput' />
-                </Col>
-                <Col md="2">
-                <Button size="sm" color="primary">Add New Todo</Button>
-                </Col>
+                    <Col md="6"><Input type='text' name='newTodoInput' /> </Col>
+                <Col md="2"> <Button size="md" color="secondary">Add New Todo</Button></Col>
                 </Row>
             </form>
         )
