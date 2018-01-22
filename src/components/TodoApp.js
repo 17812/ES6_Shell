@@ -7,7 +7,9 @@ import RemoveAll from './RemoveAll'
 import Header from './Header'
 import FeelingLuckyModal from './feelingLucky-modal'
 import {Jumbotron, Container, Button, Row, Col, Modal,l, ModalHeader, ModalBody, ModalFooter} from 'reactstrap'
+// import 'normalize.css/normalize.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/style.scss'
 
 export default class ToDoApp extends React.Component {
 

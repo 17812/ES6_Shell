@@ -39,8 +39,8 @@ export default class TodoForm extends React.Component {
                 {this.state.error && <p>{this.state.error}</p>}
                 <Row>
                     <Col md="4"></Col>
-                    <Col md="6"><Input type='text' name='newTodoInput' /> </Col>
-                <Col md="2"> <Button size="md" color="secondary">Add New Todo</Button></Col>
+                    <Col md="5"><Input type='text' name='newTodoInput' /> </Col>
+                <Col md="1"> <Button className="addNewTodoButton" size="md" className="big_button">Add New Todo</Button></Col>
                 </Row>
             </form>
         )

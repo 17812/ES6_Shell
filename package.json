@@ -26,6 +26,7 @@
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.6",
     "css-loader": "^0.28.9",
+    "normalize.css": "^7.0.0",
     "react": "^16.2.0",
     "react-addons-css-transition-group": "^15.6.2",
     "react-addons-transition-group": "^15.6.2",
