@@ -1,10 +1,11 @@
-var path = require("path");
+const path = require("path");
 
-var PATHS = {
+const PATHS = {
 
     "app" : path.resolve(__dirname,'src/app.js'),
     // "app" : path.resolve(__dirname,'src/workpad/demo/c_count.js'),
-    "build" : path.resolve(__dirname,'public/')
+    // "app" : path.resolve(__dirname,'src/helperFiles/snippets/es6.const.let.js'),
+    "build" : path.resolve(__dirname,'public')
 }
 
 module.exports={
@@ -28,8 +29,6 @@ module.exports={
     devServer : {
         port : 7000,
         contentBase : path.join(__dirname,'public'),
-        inline : true //this allows us to run automatic live updates
-
     },
 
     devtool : 'cheap-module-eval-source-map'

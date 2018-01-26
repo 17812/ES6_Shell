@@ -1,4 +1,29 @@
 .big_button {
     background-color : $purple;
     border : none;
+    border-bottom : .6rem solid darken($purple, 10%);
+    color : white;
+    font-weight : bold;
+    font-size : $l-size;
+    margin-bottom : $xl-size;
+    padding : 2.4rem;
+    width : 50%;
+    height : 10rem;
 }
+
+.button--link {
+    background: none;
+    padding : 0;
+    border : none;
+    color : $off-white;
+}
+
+
+.button--left {
+    margin-left : 0
+}
+
+testhover:hover{
+    text-decoration : none;
+}
+

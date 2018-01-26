@@ -34,14 +34,15 @@ export default class TodoForm extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.handleNewTodoInput}>
-            <p></p>
-                {this.state.error && <p>{this.state.error}</p>}
+            <form onSubmit={this.handleNewTodoInput} className="boxForm">
+
+               {this.state.error && <p className="text-warning">{this.state.error}</p>}
                 <Row>
                     <Col md="4"></Col>
-                    <Col md="5"><Input type='text' name='newTodoInput' /> </Col>
-                <Col md="1"> <Button className="addNewTodoButton" size="md" className="big_button">Add New Todo</Button></Col>
+                    <Col md="4"><Input type='text' name='newTodoInput' /> </Col>
+                    <Col md="2"><Button className="pull-right" size="md" >Add New Todo</Button></Col>
                 </Row>
+
             </form>
         )
     }

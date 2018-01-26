@@ -7,11 +7,11 @@ const  WhatShouldIDo = (props)=> (
 
         <div>
         <p></p>
-            <Button color="success" disabled={props.todoCount} onClick={props.feelingLucky}>click if you feel lucky</Button>
+            <Button className="button--link" color="secondary" disabled={props.todoCount} onClick={props.feelingLucky}>click if you feel lucky</Button>
             <p></p>
         </div>
     
 
 )
 
-export default WhatShouldIDo
+export default WhatShouldIDo    

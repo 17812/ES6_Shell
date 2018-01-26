@@ -32,6 +32,7 @@
     "react-addons-transition-group": "^15.6.2",
     "react-dom": "^16.2.0",
     "react-modal": "^3.1.11",
+    "react-router-dom": "^4.2.2",
     "reactstrap": "^5.0.0-alpha.4",
     "style-loader": "^0.19.1",
     "validator": "^9.2.0"

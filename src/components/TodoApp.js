@@ -1,21 +1,23 @@
-import React from 'react'
+import React from 'react';
+import Navigation from './Navigation';
+import TodoForm from './TodoForm';
+import WhatShouldIDo from './WhatShouldIDo';
+import TodosComp from './TodosComp';
+import RemoveAll from './RemoveAll';
+import Header from './Header';
+import PageNotFound from './PageNotFound';
+import FeelingLuckyModal from './feelingLucky-modal';
+import {Jumbotron, Container, Button, Row, Col, Modal,l, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
+import Link from 'react-router-dom'
 
-import TodoForm from './TodoForm'
-import WhatShouldIDo from './WhatShouldIDo'
-import TodosComp from './TodosComp'
-import RemoveAll from './RemoveAll'
-import Header from './Header'
-import FeelingLuckyModal from './feelingLucky-modal'
-import {Jumbotron, Container, Button, Row, Col, Modal,l, ModalHeader, ModalBody, ModalFooter} from 'reactstrap'
 // import 'normalize.css/normalize.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../styles/style.scss'
 
 export default class ToDoApp extends React.Component {
 
     state = {
         todos: [],
-        modal : false
+        modal : false,
+        feelingLuckySelection : undefined
     }
 
     componentDidMount(){
@@ -46,8 +48,16 @@ export default class ToDoApp extends React.Component {
     // }
 
     toggle=()=>{
+
+        const luckyNumber = Math.floor(Math.random() * this.state.todos.length);
+        const selectedTodo = this.state.todos[luckyNumber];
+
+        console.log('selectedTodo', selectedTodo);
+        console.log('selectedOption before', this.state.selectedOption);
+
         this.setState({
-          modal: !this.state.modal
+          modal: !this.state.modal,
+          feelingLuckySelection : selectedTodo
         });
       }
 
@@ -59,7 +69,7 @@ export default class ToDoApp extends React.Component {
         console.log('selectedTodo', selectedTodo);
         console.log('selectedOption before', this.state.selectedOption);
 
-        this.setState(()=>{ ( {selectedOption : 'tolga'})      
+        this.setState(()=>{ ( {feelingLuckySelection : selectedTodo})      
             
         }
     );
@@ -101,16 +111,17 @@ export default class ToDoApp extends React.Component {
 
     render() {
         return (
+     
             <Container className="text-center">
-                {/* <Header title={title} subtitle={subtitle}/> */}
-                     <Header />
-                     <WhatShouldIDo feelingLucky={this.toggle} todoCount={!this.state.todos.length > 0} />
-                    {this.state.todos.length===0 &&<p>Please add todo to get started!</p>}
-                    <RemoveAll handleRemoveAll={this.handleRemoveAll} />
-                    <TodosComp todos={this.state.todos} handleRemoveSingle={this.handleRemoveSingle}/>
-                    <TodoForm handleNewTodo={this.handleNewTodo} />
-                    <FeelingLuckyModal modal={this.state.modal} toggle={this.toggle} />
-
+                    {/* <Header title={title} subtitle={subtitle}/> */}
+                    <div>
+                        <WhatShouldIDo feelingLucky={this.toggle} todoCount={!this.state.todos.length > 0} />
+                        {this.state.todos.length===0 &&<p>Please add todo to get started!</p>}
+                        <RemoveAll handleRemoveAll={this.handleRemoveAll} />
+                        <TodosComp todos={this.state.todos} handleRemoveSingle={this.handleRemoveSingle}/>
+                        <TodoForm handleNewTodo={this.handleNewTodo} />
+                        <FeelingLuckyModal modal={this.state.modal} toggle={this.toggle} feelingLuckySelection={this.state.feelingLuckySelection}/>
+                    </div>
             </Container>
         )
     }

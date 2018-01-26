@@ -1,11 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-// import './styles/style.scss'
-import ToDoApp from './components/TodoApp'
+import AppRouter from './routers/AppRouter'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles/style.scss'
 
 
 
 
 
 
-ReactDOM.render(<ToDoApp todos={['one', 'two', 'three']} />, document.getElementById('appRoot'))
+ReactDOM.render(<AppRouter />, document.getElementById('appRoot'));
